@@ -23,8 +23,9 @@ public class AuthController {
 
     @PostMapping("/signup")
     public User signUp(@Valid @RequestBody User auth) {
-        authRepository.findByEmail(auth.getEmail())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.CONFLICT, "Email already exists!"));
+        if (authRepository.findByEmail(auth.getEmail()).isPresent()) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Email already exists!");
+        }
         return authRepository.save(auth);
     }
 
