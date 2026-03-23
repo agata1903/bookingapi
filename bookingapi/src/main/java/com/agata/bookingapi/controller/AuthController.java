@@ -49,11 +49,6 @@ public class AuthController {
 
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid password. Remaining chances: " + auth.getChances());
         }
-
-        if (auth.getChances() == 0) {
-            auth.setBlocked(true);
-            authRepository.save(auth);
-        }
         auth.setChances(3);
         return authRepository.save(auth);
     }
