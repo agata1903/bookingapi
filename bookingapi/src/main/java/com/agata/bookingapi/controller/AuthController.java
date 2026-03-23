@@ -40,7 +40,14 @@ public class AuthController {
 
         if (!request.getPassword().equals(auth.getPassword())) {
             auth.setChances(auth.getChances() - 1);
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid password, try again!");
+            if (auth.getChances() <= 0) {
+                auth.setBlocked(true);
+                authRepository.save(auth);
+                throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Account blocked!");
+            }
+            authRepository.save(auth);
+
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid password. Remaining chances: " + auth.getChances());
         }
 
         if (auth.getChances() == 0) {
