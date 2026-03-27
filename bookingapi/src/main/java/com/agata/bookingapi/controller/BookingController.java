@@ -20,4 +20,9 @@ public class BookingController {
         }
         return bookingRepository.save(booking);
     }
+
+    @GetMapping("/reservations")
+    public List<Booking> bookingList() {
+        return bookingRepository.findAll();
+    }
 }
