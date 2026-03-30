@@ -22,11 +22,12 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public User signUp(@Valid @RequestBody User auth) {
-        if (authRepository.findByEmail(auth.getEmail()).isPresent()) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Email already exists!");
-        }
-        return authRepository.save(auth);
+    public User signUp(@Valid @RequestBody UserDTO request) {
+        User user = new User();
+        request.setName(user.getName());
+        request.setEmail(user.getEmail());
+        request.setPassword(user.getPassword());
+        return authRepository.save(user);
     }
 
     @PostMapping("/login")
