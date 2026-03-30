@@ -13,7 +13,7 @@ public class BookingController {
         this.bookingRepository = bookingRepository;
     }
 
-    @PostMapping("/schedule")
+    @PostMapping("/scheduling")
     public Booking scheduleTime(@Valid Booking booking) {
         if (bookingRepository.existsAppointmentTime(booking.getAppointmentTime())) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Time already reserved!");
