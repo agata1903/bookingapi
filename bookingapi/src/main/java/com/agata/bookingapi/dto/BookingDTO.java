@@ -14,7 +14,7 @@ public class BookingDTO {
     public BookingDTO() {
     }
 
-    public BookingRequest(Long userId, String clientName, String clientPhone, String professionalName, String service, LocalDateTime appointmentTime) {
+    public BookingDTO(Long userId, String clientName, String clientPhone, String professionalName, String service, LocalDateTime appointmentTime) {
         this.userId = userId;
         this.clientName = clientName;
         this.clientPhone = clientPhone;
