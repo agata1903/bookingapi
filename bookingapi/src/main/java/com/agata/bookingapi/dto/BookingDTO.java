@@ -2,7 +2,7 @@ package com.agata.bookingapi.dto;
 
 import java.time.LocalDateTime;
 
-public class BookingRequest {
+public class BookingDTO {
 
     private Long userId;
     private String clientName;
