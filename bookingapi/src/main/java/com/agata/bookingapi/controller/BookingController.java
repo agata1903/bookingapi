@@ -22,6 +22,7 @@ public class BookingController {
 
     public BookingController(BookingRepository bookingRepository, AuthRepository authRepository) {
         this.bookingRepository = bookingRepository;
+        this.authRepository = authRepository;
     }
 
     @PostMapping
