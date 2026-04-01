@@ -1,5 +1,4 @@
 package com.agata.bookingapi.dto;
-
 public class LoginRequest {
 
     private String email;
