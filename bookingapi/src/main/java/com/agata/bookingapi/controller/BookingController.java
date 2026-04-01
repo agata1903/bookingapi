@@ -20,7 +20,7 @@ public class BookingController {
     private final BookingRepository bookingRepository;
     private final AuthRepository authRepository;
 
-    public BookingController(BookingRepository bookingRepository) {
+    public BookingController(BookingRepository bookingRepository, AuthRepository authRepository) {
         this.bookingRepository = bookingRepository;
     }
 
