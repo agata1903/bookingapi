@@ -11,7 +11,7 @@ public class BookingDTO {
     private String service;
     private LocalDateTime appointmentTime;
 
-    public BookingRequest() {
+    public BookingDTO() {
     }
 
     public BookingRequest(Long userId, String clientName, String clientPhone, String professionalName, String service, LocalDateTime appointmentTime) {
