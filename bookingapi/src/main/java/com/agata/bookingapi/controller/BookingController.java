@@ -31,6 +31,8 @@ public class BookingController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found!"));
 
         Booking booking = new Booking();
+        
+        booking.setUser(user);
         booking.setClientName(request.getClientName());
         booking.setClientPhone(request.getClientPhone());
         booking.setAppointmentTime(request.getAppointmentTime());
