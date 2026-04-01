@@ -49,8 +49,9 @@ public class BookingController {
     }
 
     @PatchMapping("/{id}")
-    public Booking updateBooking(@Valid @RequestBody Booking booking) {
-        Booking existsBooking = bookingRepository.findById(booking.getId())
+    public Booking updateBooking(@Valid @RequestBody BookingDTO request) {
+
+        Booking existsBooking = bookingRepository.findById(request.getUserId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Booking not found!"));
         if (!existsBooking.getAppointmentTime().equals(booking.getAppointmentTime()) && bookingRepository.existsAppointmentTime(booking.getAppointmentTime())) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Time already reserved!");
