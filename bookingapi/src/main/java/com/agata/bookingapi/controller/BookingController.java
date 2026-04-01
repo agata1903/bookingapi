@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class BookingController {
 
     private final BookingRepository bookingRepository;
+    private final AuthRepository authRepository;
 
     public BookingController(BookingRepository bookingRepository) {
         this.bookingRepository = bookingRepository;
