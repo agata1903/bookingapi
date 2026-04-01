@@ -23,7 +23,7 @@ public class BookingDTO {
         this.appointmentTime = appointmentTime;
     }
 
-    public BookingRequest(String clientName, String clientPhone, String professionalName, String service, LocalDateTime appointmentTime) {
+    public BookingDTO(String clientName, String clientPhone, String professionalName, String service, LocalDateTime appointmentTime) {
         this.clientName = clientName;
         this.clientPhone = clientPhone;
         this.professionalName = professionalName;
