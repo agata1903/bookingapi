@@ -16,6 +16,9 @@ public class BookingController {
 
     @PostMapping
     public Booking createBooking(@Valid @RequestBody BookingDTO request) {
+        User user = authRepository.findById(request.getUserId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found!"));
+
         Booking booking = new Booking();
         booking.setClientName(request.getClientName());
         booking.setClientPhone(request.getClientPhone());
