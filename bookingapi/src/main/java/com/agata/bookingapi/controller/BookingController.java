@@ -1,7 +1,17 @@
 package com.agata.bookingapi.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.agata.bookingapi.dto.BookingDTO;
+import com.agata.bookingapi.model.Booking;
+import com.agata.bookingapi.model.User;
+import com.agata.bookingapi.model.enums.BookingStatus;
+import com.agata.bookingapi.repository.AuthRepository;
+import com.agata.bookingapi.repository.BookingRepository;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/bookings")
