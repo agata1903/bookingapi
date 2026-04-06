@@ -25,10 +25,15 @@ public class BookingController {
         this.authRepository = authRepository;
     }
 
+
     @PostMapping
     public Booking createBooking(@Valid @RequestBody BookingDTO request) {
         User user = authRepository.findById(request.getUserId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found!"));
+
+        if (user.isBlocked()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This user is blocked and cannot create bookings");
+        }
 
         Booking booking = new Booking();
         
@@ -49,18 +54,17 @@ public class BookingController {
     }
 
     @PatchMapping("/{id}")
-    public Booking updateBooking(@Valid @RequestBody BookingDTO request) {
+    public Booking updateBooking(@PathVariable Long id, @Valid @RequestBody BookingDTO request) {
 
-        Booking existsBooking = bookingRepository.findById(request.getUserId())
+        Booking existsBooking = bookingRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Booking not found!"));
-        if (!existsBooking.getAppointmentTime().equals(booking.getAppointmentTime()) && bookingRepository.existsAppointmentTime(booking.getAppointmentTime())) {
+        if (!existsBooking.getAppointmentTime().equals(request.getAppointmentTime()) &&
+                bookingRepository.existsByProfessionalNameAndAppointmentTime(request.getProfessionalName(),
+                        request.getAppointmentTime())) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Time already reserved!");
         }
-        return bookingRepository.save(booking);
-    }
 
-    @GetMapping("/reservations")
-    public List<Booking> bookingList() {
-        return bookingRepository.findAll();
+        existsBooking.setAppointmentTime(request.getAppointmentTime());
+        return bookingRepository.save(existsBooking);
     }
 }

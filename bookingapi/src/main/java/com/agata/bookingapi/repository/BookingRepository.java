@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface BookingRepository extends JpaRepository<Booking, Long> {
-    boolean existsAppointmentTime(LocalDateTime appointmentTime);
+    boolean existsByProfessionalNameAndAppointmentTime(String professionalName, LocalDateTime appointmentTime);
     List<Booking> findByProfessionalName(String professionalName);
     List<Booking> findByAppointmentTime(LocalDateTime appointmentTime);
 }

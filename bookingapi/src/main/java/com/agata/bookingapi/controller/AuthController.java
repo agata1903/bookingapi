@@ -1,6 +1,7 @@
 package com.agata.bookingapi.controller;
 
 import com.agata.bookingapi.dto.LoginRequest;
+import com.agata.bookingapi.dto.UserDTO;
 import com.agata.bookingapi.model.User;
 import com.agata.bookingapi.repository.AuthRepository;
 import jakarta.validation.Valid;
@@ -24,9 +25,9 @@ public class AuthController {
     @PostMapping("/signup")
     public User signUp(@Valid @RequestBody UserDTO request) {
         User user = new User();
-        request.setName(user.getName());
-        request.setEmail(user.getEmail());
-        request.setPassword(user.getPassword());
+        user.setName(request.getName());
+        user.setEmail(request.getEmail());
+        user.setPassword(request.getPassword());
         return authRepository.save(user);
     }
 
