@@ -3,7 +3,7 @@
 API REST desenvolvida com Spring Boot para gerenciamento de usuários, autenticação e agendamentos.
 
 ## Sobre o projeto
-Este projeto foi desenvolvido com o objetivo de consolidar conhecimentos em contrução de APIs REST, utilizando boas práticas de arquitetura e organização de código.
+Este projeto foi desenvolvido com o objetivo de consolidar conhecimentos em construção de APIs REST, utilizando boas práticas de arquitetura e organização de código.
 A aplicação será responsável por gerenciar usuários e permitir o agendamento de serviços, com controle de disponibilidade e autenticação segura.
 
 ## Tecnologias utilizadas
